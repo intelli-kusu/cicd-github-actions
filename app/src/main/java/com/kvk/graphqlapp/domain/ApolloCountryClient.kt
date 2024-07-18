@@ -18,7 +18,6 @@ class ApolloCountryClient(
             .data
             ?.countries
             ?.map { it.toSimpleCountry() } ?: emptyList()
-
     }
 
     override suspend fun getCountry(code: String): DetailedCountry? {

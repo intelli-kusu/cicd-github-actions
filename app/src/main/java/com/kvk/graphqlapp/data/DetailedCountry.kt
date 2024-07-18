@@ -1,6 +1,6 @@
 package com.kvk.graphqlapp.data
 
-data class DetailedCountry (
+data class DetailedCountry(
     val code: String,
     val name: String,
     val capital: String,
