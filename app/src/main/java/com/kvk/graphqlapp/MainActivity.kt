@@ -11,7 +11,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -39,16 +38,16 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting("GraphQL")
                 }
             }
         }
 
         countriesViewModel.getCountries()
-        val stateFlow  = countriesViewModel.countriesState
+        val stateFlow = countriesViewModel.countriesState
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                /*countriesViewModel.countriesState*/stateFlow.collect {
+                stateFlow.collect {
                     Log.e(TAG, "Countries: $it")
                 }
             }
@@ -83,12 +82,4 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GraphqlAppTheme {
-        Greeting("Android")
-    }
 }

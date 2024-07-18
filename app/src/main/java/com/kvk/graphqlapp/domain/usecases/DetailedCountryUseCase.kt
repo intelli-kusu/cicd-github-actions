@@ -1,7 +1,6 @@
 package com.kvk.graphqlapp.domain.usecases
 
 import com.kvk.graphqlapp.data.DetailedCountry
-import com.kvk.graphqlapp.data.SimpleCountry
 import com.kvk.graphqlapp.domain.CountryClient
 
 
