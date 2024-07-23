@@ -25,13 +25,13 @@ jobs:
         #uses: gradle/gradle-build-action@v3.5.0
         uses: gradle/actions/setup-gradle@v3.5.0
         with:
-            gradle-version: 8.4
+          gradle-version: 8.4
 
       - name: Check gradle version
         run: gradle --version
 
       - name: Build with Gradle
-        #run: ./gradlew build
+        #run: ./gradlew build # This is gradle wrapper execution. You need to commit gradlew to this repo.
         run: gradle build
 
       - name: Upload a Build Artifact
@@ -39,3 +39,28 @@ jobs:
         with:
           name: GraphqlApp.apk
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      # Docker is pre-installed on ubuntu & we no need to setup
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: dockerkusu/cicd-github-actions
+          tags: v1, latest
+          registry: docker.io
+          dockerfile: Dockerfile.ci
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+  # We can also add other jobs like publishing. By default all the jobs run in parallel.
+  # We can override this and wait for other jobs before starting one.
+
+  # Basically these jobs/actions run on Github servers.
+  # We can tell the job to run on required operating systems using strategy & matrix attributes.
+
+#  publish:
+#    runs-on: ${{matrix.os}}
+#    strategy:
+#      matrix:
+#        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+#    needs: build
