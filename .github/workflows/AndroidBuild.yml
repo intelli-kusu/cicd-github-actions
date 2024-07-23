@@ -41,15 +41,16 @@ jobs:
           path: app/build/outputs/apk/debug/app-debug.apk
 
       # Docker is pre-installed on ubuntu & we no need to setup
-      - name: Build and Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: dockerkusu/cicd-github-actions
-          tags: v1, latest
-          registry: docker.io
-          #dockerfile: Dockerfile.ci
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+
+#      - name: Build and Push Docker Image
+#        uses: mr-smithers-excellent/docker-build-push@v6
+#        with:
+#          image: dockerkusu/cicd-github-actions
+#          tags: v1, latest
+#          registry: docker.io
+#          #dockerfile: Dockerfile.ci
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
 
 
   # We can also add other jobs like publishing. By default all the jobs run in parallel.
